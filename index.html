@@ -2,101 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dice Game</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="dice.css">
 </head>
-<body class="h-screen w-screen overflow-hidden bg-gradient-to-r from-[#bdc3c7] to-[#2c3e50] flex flex-col">
-    <div class="w-full h-full flex flex-col p-4 md:p-8">
-        <div class="w-full bg-white/90 rounded-xl shadow-2xl overflow-hidden flex flex-col h-full">
-            <div class="p-4 md:p-8 flex flex-col h-full">
-                <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">Dice Game</h1>
-                
-                <!-- Balance Display -->
-                <div class="bg-gray-100 rounded-lg p-4 mb-6 shadow-inner">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-xl font-bold text-gray-700">Balance</h2>
-                        <p class="text-2xl font-bold text-green-600"><span id="balance">0</span> MMK</p>
+<body>
+    <div class="container">
+        <div class="game-wrapper">
+            <h1>Dice Game</h1>
+            
+            <!-- Balance Display -->
+            <div class="panel">
+                <div class="panel-content">
+                    <h2>Balance</h2>
+                    <p class="balance-amount"><span id="balance">0</span> MMK</p>
+                </div>
+            </div>
+            
+            <!-- Deposit Section -->
+            <div class="panel">
+                <h2>Deposit / Withdraw</h2>
+                <div class="deposit-controls">
+                    <input type="number" id="amountInput" placeholder="Enter amount">
+                    <div class="action-buttons">
+                        <button id="depositBtn">Deposit</button>
+                        <button id="withdrawBtn">Withdraw</button>
                     </div>
                 </div>
-                
-                <!-- Deposit Section -->
-                <div class="bg-gray-100 rounded-lg p-4 mb-6 shadow-inner">
-                    <h2 class="text-xl font-bold text-gray-700 mb-3">Deposit / Withdraw</h2>
-                    <div class="flex flex-col md:flex-row gap-3">
-                        <input type="number" id="amountInput" placeholder="Enter amount" class="flex-grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <button id="depositBtn" class="px-6 py-2 bg-green-500 text-white font-medium rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all">
-                            Deposit
-                        </button>
-                        <button id="withdrawBtn" class="px-6 py-2 bg-red-500 text-white font-medium rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-all">
-                            Withdraw
-                        </button>
+            </div>
+            
+            <!-- Quick Amount Buttons -->
+            <div class="amount-buttons">
+                <button class="amount-btn" data-amount="min">Min</button>
+                <button class="amount-btn" data-amount="500">500 MMK</button>
+                <button class="amount-btn" data-amount="1000">1000 MMK</button>
+                <button class="amount-btn" data-amount="3000">3000 MMK</button>
+                <button class="amount-btn" data-amount="5000">5000 MMK</button>
+                <button class="amount-btn" data-amount="max">Max</button>
+            </div>
+            
+            <!-- Bet Amount Section -->
+            <div class="panel">
+                <div class="panel-content">
+                    <h2>Bet Amount</h2>
+                    <p class="bet-amount"><span id="betAmount">0</span> MMK</p>
+                </div>
+            </div>
+            
+            <!-- Dice Display -->
+            <div class="dice-container">
+                <div id="dice1" class="dice">
+                    <div class="dots-container">
+                        <div class="dot"></div>
                     </div>
                 </div>
-                
-                <!-- Quick Amount Buttons -->
-                <div class="grid grid-cols-3 md:grid-cols-6 gap-2 mb-6">
-                    <button class="amount-btn px-2 py-2 bg-blue-400 text-white font-medium rounded-lg shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition-all" data-amount="min">
-                        Min
-                    </button>
-                    <button class="amount-btn px-2 py-2 bg-blue-400 text-white font-medium rounded-lg shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition-all" data-amount="500">
-                        500 MMK
-                    </button>
-                    <button class="amount-btn px-2 py-2 bg-blue-400 text-white font-medium rounded-lg shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition-all" data-amount="1000">
-                        1000 MMK
-                    </button>
-                    <button class="amount-btn px-2 py-2 bg-blue-400 text-white font-medium rounded-lg shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition-all" data-amount="3000">
-                        3000 MMK
-                    </button>
-                    <button class="amount-btn px-2 py-2 bg-blue-400 text-white font-medium rounded-lg shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition-all" data-amount="5000">
-                        5000 MMK
-                    </button>
-                    <button class="amount-btn px-2 py-2 bg-blue-400 text-white font-medium rounded-lg shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition-all" data-amount="max">
-                        Max
-                    </button>
-                </div>
-                
-                <!-- Bet Amount Section -->
-                <div class="bg-gray-100 rounded-lg p-4 mb-6 shadow-inner">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-xl font-bold text-gray-700">Bet Amount</h2>
-                        <p class="text-2xl font-bold text-blue-600"><span id="betAmount">0</span> MMK</p>
+                <div id="dice2" class="dice">
+                    <div class="dots-container">
+                        <div class="dot"></div>
                     </div>
                 </div>
-                
-                <!-- Dice Display -->
-                <div class="flex justify-center space-x-8 mb-6">
-                    <div id="dice1" class="dice w-20 h-20 md:w-24 md:h-24 bg-white rounded-xl shadow-lg flex items-center justify-center">
-                        <div class="dots-container">
-                            <div class="dot"></div>
-                        </div>
-                    </div>
-                    <div id="dice2" class="dice w-20 h-20 md:w-24 md:h-24 bg-white rounded-xl shadow-lg flex items-center justify-center">
-                        <div class="dots-container">
-                            <div class="dot"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mb-6">
-                    <p class="text-xl font-semibold">Total: <span id="diceTotal" class="text-2xl text-blue-600">2</span></p>
-                    <p id="result" class="mt-2 text-lg font-medium text-gray-700"></p>
-                    <p id="winAmount" class="mt-1 text-lg font-bold text-green-600 hidden"></p>
-                </div>
-                
-                <!-- Game Buttons -->
-                <div class="flex justify-center space-x-4 mt-auto">
-                    <button id="under7" class="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all">
-                        Under 7 (2.3x)
-                    </button>
-                    <button id="equal7" class="px-6 py-3 bg-green-500 text-white font-medium rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all">
-                        Equal 7 (5.8x)
-                    </button>
-                    <button id="over7" class="px-6 py-3 bg-purple-500 text-white font-medium rounded-lg shadow-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition-all">
-                        Over 7 (2.3x)
-                    </button>
-                </div>
+            </div>
+            
+            <div class="result-section">
+                <p class="total-display">Total: <span id="diceTotal">2</span></p>
+                <p id="result" class="result-message"></p>
+                <p id="winAmount" class="win-amount hidden"></p>
+            </div>
+            
+            <!-- Game Buttons -->
+            <div class="game-buttons">
+                <button id="under7">Under 7 (2.3x)</button>
+                <button id="equal7">Equal 7 (5.8x)</button>
+                <button id="over7">Over 7 (2.3x)</button>
             </div>
         </div>
     </div>

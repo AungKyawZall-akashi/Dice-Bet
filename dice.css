@@ -1,7 +1,183 @@
-/* Dice styling */
+/* General styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: linear-gradient(to right, #bdc3c7, #2c3e50);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-wrapper {
+    width: 100%;
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.75rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+/* Panel styling */
+.panel {
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.panel-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.balance-amount {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #059669;
+}
+
+.bet-amount {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2563EB;
+}
+
+/* Deposit controls */
+.deposit-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+}
+
+input[type="number"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+button {
+    padding: 0.75rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+#depositBtn {
+    background-color: #10B981;
+    color: white;
+}
+
+#depositBtn:hover {
+    background-color: #059669;
+}
+
+#withdrawBtn {
+    background-color: #EF4444;
+    color: white;
+}
+
+#withdrawBtn:hover {
+    background-color: #DC2626;
+}
+
+/* Amount buttons */
+.amount-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.amount-btn {
+    background-color: #60A5FA;
+    color: white;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.8rem;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.amount-btn:hover {
+    background-color: #3B82F6;
+}
+
+/* Dice Display */
+.dice-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
 .dice {
     position: relative;
     transition: transform 0.6s ease;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dice.rolling {
@@ -64,6 +240,82 @@
 .dice-6 .dots-container .dot:nth-child(5) { grid-area: b; }
 .dice-6 .dots-container .dot:nth-child(6) { grid-area: d; }
 
+/* Result section */
+.result-section {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.total-display {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+#diceTotal {
+    color: #2563EB;
+    font-size: 1.25rem;
+}
+
+.result-message {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.win-amount {
+    margin-top: 0.25rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #059669;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Game Buttons */
+.game-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+#under7, #equal7, #over7 {
+    flex: 1;
+    padding: 0.75rem 0.25rem;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+#under7 {
+    background-color: #3B82F6;
+    color: white;
+}
+
+#under7:hover {
+    background-color: #2563EB;
+}
+
+#equal7 {
+    background-color: #10B981;
+    color: white;
+}
+
+#equal7:hover {
+    background-color: #059669;
+}
+
+#over7 {
+    background-color: #8B5CF6;
+    color: white;
+}
+
+#over7:hover {
+    background-color: #7C3AED;
+}
+
 /* Result message styling */
 .result-win {
     color: #10B981;
@@ -73,4 +325,136 @@
 .result-lose {
     color: #EF4444;
     font-weight: bold;
+}
+
+/* Media Queries */
+@media (min-width: 375px) {
+    .dice {
+        width: 65px;
+        height: 65px;
+    }
+    
+    #under7, #equal7, #over7 {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 480px) {
+    .game-wrapper {
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    .dice {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .dice-container {
+        gap: 1.25rem;
+    }
+    
+    #under7, #equal7, #over7 {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .panel {
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 640px) {
+    .game-wrapper {
+        padding: 1.5rem;
+        max-width: 600px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    .dice {
+        width: 80px;
+        height: 80px;
+        border-radius: 0.75rem;
+    }
+    
+    .amount-buttons {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    
+    .deposit-controls {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .action-buttons {
+        flex-direction: row;
+    }
+    
+    input[type="number"] {
+        flex: 1;
+        margin-right: 0.5rem;
+    }
+    
+    button {
+        font-size: 1rem;
+    }
+    
+    .amount-btn {
+        font-size: 0.9rem;
+        height: auto;
+        padding: 0.5rem;
+    }
+    
+    #under7, #equal7, #over7 {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+    
+    .total-display {
+        font-size: 1.25rem;
+    }
+    
+    #diceTotal {
+        font-size: 1.5rem;
+    }
+    
+    .result-message {
+        font-size: 1.1rem;
+    }
+    
+    .win-amount {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .game-wrapper {
+        padding: 2rem;
+        max-width: 700px;
+    }
+    
+    h1 {
+        font-size: 2.25rem;
+    }
+    
+    .dice {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .game-buttons {
+        gap: 1rem;
+    }
 }
